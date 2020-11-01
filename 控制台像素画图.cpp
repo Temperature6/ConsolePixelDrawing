@@ -1,7 +1,8 @@
 /*
-2020/10/6 19:43-创建工程并完成第一个版本
-2020/10/7 13:25-添加空格抬笔的功能
-2020/10/7 21:54-修复颜色栏显示信息不全的Bug
+2020/10/06 19:43-创建工程并完成第一个版本
+2020/10/07 13:25-添加空格抬笔的功能
+2020/10/07 21:54-修复颜色栏显示信息不全的Bug
+2020/11/01 10:05-更改切换画笔的方式，增添了新画笔
 */
 #include <iostream>
 #include <conio.h>
@@ -13,7 +14,7 @@ using namespace std;
 int x = 1, y = 1;
 int pen = 0, historypen = 0, up = 0;
 int color = 7;
-char PenType[4] = { '#', '@', '*', ' ' };
+char PenType[5] = { '#', '@', '*', '%', ' ' };
 vector <string> ColorType = { "兰  ","绿  ","青  ","红  ","洋红","深灰","黄  ","白  " };
 /*
 	1 - BLUE 兰1
@@ -33,7 +34,7 @@ int main()
 {
 	printf("开始之前右击窗口左上角，属性——布局——调整大小时对输出的文本换行——取消勾选\n");
 	printf("注意：在光标到达窗口边界之前调整窗口大小防止出现问题\n");
-	printf("按下“P”切换画笔模式,按下空格键抬起\\放下画笔\n");
+	printf("按下#、@、*、%对应的数字按键切换画笔，按下“0”切换为橡皮,按下空格键抬起\\放下画笔\n");
 	printf("颜色对应的按键：B-兰 G-绿 C-青 R-红 M-洋红 D-深灰 Y-黄 W-白\n");
 	printf("按下回车键开始\n");
 	system("title 开始你的绘画吧!");
@@ -151,29 +152,44 @@ void drawattributes(int key)
 			pen = 5;
 		}
 		else if (up == 0)
-			pen = historypen - 1;
+			pen = historypen;
+		break;
 		//切换画笔
-	case 112:
-	case 80:
-		pen++;
-		switch (pen)
-		{
-		case 4:
-			pen -= 4;
-		case 0:
-			system("title 画笔类型：#");
-			break;
-		case 1:
-			system("title 画笔类型：@");
-			break;
-		case 2:
-			system("title 画笔类型：*");
-			break;
-		case 3:
-			system("title 画笔类型：橡皮");
-			break;
-		}
+	case 51:
+		pen = 0;
+		break;
+	case 50:
+		pen = 1;
+		break;
+	case 53:
+		pen = 3;
+		break;
+	case 56:
+		pen = 2;
+		break;
+	case 48:
+		pen = 4;
+		break;
 	default:
+		break;
+	}
+	//刷新画笔类型
+	switch (pen)
+	{
+	case 0:
+		system("title 画笔类型：#");
+		break;
+	case 1:
+		system("title 画笔类型：@");
+		break;
+	case 2:
+		system("title 画笔类型：*");
+		break;
+	case 3:
+		system("title 画笔类型：%");
+		break;
+	case 4:
+		system("title 画笔类型：橡皮");
 		break;
 	}
 	MoveCursor(0, 0);
