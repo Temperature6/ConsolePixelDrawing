@@ -2,7 +2,7 @@
 2020/10/06 19:43-创建工程并完成第一个版本
 2020/10/07 13:25-添加空格抬笔的功能
 2020/10/07 21:54-修复颜色栏显示信息不全的Bug
-2020/11/01 10:05-更改切换画笔的方式，增添了新画笔
+2020/11/01 12:05-更改切换画笔的方式，增添了新画笔
 */
 #include <iostream>
 #include <conio.h>
@@ -36,10 +36,13 @@ int main()
 	printf("注意：在光标到达窗口边界之前调整窗口大小防止出现问题\n");
 	printf("按下#、@、*、%对应的数字按键切换画笔，按下“0”切换为橡皮,按下空格键抬起\\放下画笔\n");
 	printf("颜色对应的按键：B-兰 G-绿 C-青 R-红 M-洋红 D-深灰 Y-黄 W-白\n");
-	printf("按下回车键开始\n");
+	printf("按下“g”键打开GitHub仓库网址，按下任意键开始\n");
 	system("title 开始你的绘画吧!");
-	if (_getch() != 13)
+	if (_getch() == 71 || 108)
+	{
+		system("start https://github.com/Temperature6/ConsolePixelDrawing");
 		exit(1);
+	}
 	system("cls");
 	while (true)
 	{
