@@ -4,7 +4,7 @@
 #pragma once
 
 using namespace std;
-//动态链接库函数
+//鍔ㄦ�侀摼鎺ュ簱鍑芥暟
 HINSTANCE hInst = LoadLibrary(L"fileanalysis.dll");
 
 typedef int(*DLLFuncSave)(char* ProjectName, vector<char>veccanvas);
@@ -110,11 +110,3 @@ void getname(char* path, char* name)
 	for (int k = 0; path[k] != '\0'; k++)
 		name[k] = path[j + k + 1];
 }
-
-//vector<int> getrange(char* arr,int pos = 0)
-//{
-//	//pos:传入当前指针的位置以提高效率
-//	vector <char> vecrange;
-//	for (int i = pos; arr[i] != '\0'; i++)
-//		vecrange.push_back(arr[i]);
-//}
