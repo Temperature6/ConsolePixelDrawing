@@ -1,15 +1,15 @@
 /*
-2020/10/06 19:43-´´½¨¹¤³Ì²¢Íê³ÉµÚÒ»¸ö°æ±¾
-2020/10/07 13:25-Ìí¼Ó¿Õ¸ñÌ§±ÊµÄ¹¦ÄÜ
-2020/10/07 21:54-ĞŞ¸´ÑÕÉ«À¸ÏÔÊ¾ĞÅÏ¢²»È«µÄBug
-2020/11/01 12:05-¸ü¸ÄÇĞ»»»­±ÊµÄ·½Ê½£¬ÔöÌíÁËĞÂ»­±Ê
-2020/12/13 13:07-ĞŞ¸´ÁËÎŞ·¨Õı³£´ò¿ªµÄBug
-2021/01/02 12:39-Ìí¼ÓÁË°´s¼ü±£´æ»­Í¼¹¤³ÌµÄ¹¦ÄÜ£¬Ôö¼ÓÁË¡°fileanalysis.dll¡±ÓÃÓÚ±£´æ»­Í¼¹¤³Ì
-2021/01/02 12:58-Ìí¼ÓÁË»­²¼·¶Î§
-2021/02/08 20:48-ĞŞ¸´ÁËÖ®Ç°»­×÷ÎŞ·¨±£´æµÄÎÊÌâ
-2021/02/09 21:30-¸ü¸ÄÁËºÜ¶àºÜ¶à
-2021/02/10 17:30-ĞŞ¸´ÁËºÜ¶àºÜ¶àBUG
-2021/02/19 13:02-È¥µôÁË/f²ÎÊı£¬¿ÉÍÏ¶¯»­²¼ÎÄ¼şµ½.exeÉÏÖ±½Ó´ò¿ª
+2020/10/06 19:43-åˆ›å»ºå·¥ç¨‹å¹¶å®Œæˆç¬¬ä¸€ä¸ªç‰ˆæœ¬
+2020/10/07 13:25-æ·»åŠ ç©ºæ ¼æŠ¬ç¬”çš„åŠŸèƒ½
+2020/10/07 21:54-ä¿®å¤é¢œè‰²æ æ˜¾ç¤ºä¿¡æ¯ä¸å…¨çš„Bug
+2020/11/01 12:05-æ›´æ”¹åˆ‡æ¢ç”»ç¬”çš„æ–¹å¼ï¼Œå¢æ·»äº†æ–°ç”»ç¬”
+2020/12/13 13:07-ä¿®å¤äº†æ— æ³•æ­£å¸¸æ‰“å¼€çš„Bug
+2021/01/02 12:39-æ·»åŠ äº†æŒ‰sé”®ä¿å­˜ç”»å›¾å·¥ç¨‹çš„åŠŸèƒ½ï¼Œå¢åŠ äº†â€œfileanalysis.dllâ€ç”¨äºä¿å­˜ç”»å›¾å·¥ç¨‹
+2021/01/02 12:58-æ·»åŠ äº†ç”»å¸ƒèŒƒå›´
+2021/02/08 20:48-ä¿®å¤äº†ä¹‹å‰ç”»ä½œæ— æ³•ä¿å­˜çš„é—®é¢˜
+2021/02/09 21:30-æ›´æ”¹äº†å¾ˆå¤šå¾ˆå¤š
+2021/02/10 17:30-ä¿®å¤äº†å¾ˆå¤šå¾ˆå¤šBUG
+2021/02/19 13:02-å»æ‰äº†/få‚æ•°ï¼Œå¯æ‹–åŠ¨ç”»å¸ƒæ–‡ä»¶åˆ°.exeä¸Šç›´æ¥æ‰“å¼€
 */
 #include <iostream>
 #include <conio.h>
@@ -25,33 +25,33 @@
 using namespace std;
 
 int x = 1, y = 1;
-int xMax = 1, yMax = 1; //È·¶¨»­±Ê»­µ½µÄ×î´ó·¶Î§
+int xMax = 1, yMax = 1; //ç¡®å®šç”»ç¬”ç”»åˆ°çš„æœ€å¤§èŒƒå›´
 char pen = '#', historypen, up = 0;
 int color = 7;
-bool normal = true; //ÊÇ·ñÎªÕı³£½øÈë
+bool normal = true; //æ˜¯å¦ä¸ºæ­£å¸¸è¿›å…¥
 
-char canvas[YMAX][XMAX]; //»­²¼
-int canvascolor[YMAX][XMAX]; //ÏñËØÑÕÉ«
+char canvas[YMAX][XMAX]; //ç”»å¸ƒ
+int canvascolor[YMAX][XMAX]; //åƒç´ é¢œè‰²
 char temparr[YMAX * XMAX * 2];
-char path[100]; //Â·¾¶
-//¶ÁÈ¡ÎÄ¼şºó´¢´æµÄÁÙÊ±Êı×é
+char path[100]; //è·¯å¾„
+//è¯»å–æ–‡ä»¶åå‚¨å­˜çš„ä¸´æ—¶æ•°ç»„
 char t_canvas[YMAX * XMAX];
 char t_canvascolor[YMAX * XMAX];
 
 //char PenType[5] = { '#', '@', '*', '%', ' ' };
-vector <string> ColorType = { "À¼  ","ÂÌ  ","Çà  ","ºì  ","Ñóºì","Éî»Ò","»Æ  ","°×  " };
+vector <string> ColorType = { "å…°  ","ç»¿  ","é’  ","çº¢  ","æ´‹çº¢","æ·±ç°","é»„  ","ç™½  " };
 char name[60] = "draw.txt";
-char suffix[10] = ".cpd"; //ºó×ºÃû
+char suffix[10] = ".cpd"; //åç¼€å
 
 /*
-	1 - BLUE À¼1
-	2 - GREEN ÂÌ2
-	3 - CYAN Çà3
-	4 - RED ºì4
-	5 - MAGENTA Ñóºì5
-	8 - DARKGRAY Éî»Ò6
-	14 - YELLOW »Æ7
-	15 - WHITE °×8
+	1 - BLUE å…°1
+	2 - GREEN ç»¿2
+	3 - CYAN é’3
+	4 - RED çº¢4
+	5 - MAGENTA æ´‹çº¢5
+	8 - DARKGRAY æ·±ç°6
+	14 - YELLOW é»„7
+	15 - WHITE ç™½8
 */
 
 void draw(int direction);
@@ -63,44 +63,44 @@ int main(int argc, char* argv[])
 {
 	if (testload() == 0)
 	{
-		system("title ´íÎó");
-		printf("\nÎÒÃÇÎŞ·¨¼ÓÔØ¡°fileanalysis.dll¡±\nÇë¼ì²é¡°fileanalysis.dll¡±ÊÇ·ñÓë¿ÉÖ´ĞĞÎÄ¼şÎ»ÓÚÍ¬Ò»ÎÄ¼ş¼ĞÖĞ\n\n");
+		system("title é”™è¯¯");
+		printf("\næˆ‘ä»¬æ— æ³•åŠ è½½â€œfileanalysis.dllâ€\nè¯·æ£€æŸ¥â€œfileanalysis.dllâ€æ˜¯å¦ä¸å¯æ‰§è¡Œæ–‡ä»¶ä½äºåŒä¸€æ–‡ä»¶å¤¹ä¸­\n\n");
 		system("pause");
 		exit(1);
 	}
 START:
-	int pos = 2; //*2ºó²ÅÊÇ¶ÔÓ¦µÄyÖá×ø±ê
-	//ÃüÁîĞĞµ÷ÓÃ(argc>1)
+	int pos = 2; //*2åæ‰æ˜¯å¯¹åº”çš„yè½´åæ ‡
+	//å‘½ä»¤è¡Œè°ƒç”¨(argc>1)
 	if (argc > 1)
 	{
 		cout << argv[1];
 		normal = false;
-		if (strcmp(argv[1],"/n") == 0) //ĞÂ½¨»­²¼
+		if (strcmp(argv[1],"/n") == 0) //æ–°å»ºç”»å¸ƒ
 			pos = 2;
-		else if (strcmp(argv[1], "/h") == 0) //°ïÖú
+		else if (strcmp(argv[1], "/h") == 0) //å¸®åŠ©
 			pos = 4;
-		else if (strcmp(argv[1], "/g") == 0) //Github²Ö¿â
+		else if (strcmp(argv[1], "/g") == 0) //Githubä»“åº“
 			pos = 5;
 		else
 			pos = 3;
 	}
-	//Õı³£½øÈë(argc=1)
+	//æ­£å¸¸è¿›å…¥(argc=1)
 	else if (argc == 1)
 	{
 	system("cls");
-	system("title »¶Ó­Ê¹ÓÃ");
-	printf("\nÊ¹ÓÃ ¡ü ¡ı ¼üÑ¡Ôñ²Ù×÷£¬°´ÏÂ»Ø³µÈ·¶¨");
-	printf("\n\n\n\t\tĞÂ½¨»­²¼\n\n\t\t´ò¿ª»­²¼ÎÄ¼ş\n\n\t\t²Ù×÷ËµÃ÷\n\n\t\t´ò¿ªGitHub²Ö¿â\n\n\t\tÍË³ö");
+	system("title æ¬¢è¿ä½¿ç”¨");
+	printf("\nä½¿ç”¨ â†‘ â†“ é”®é€‰æ‹©æ“ä½œï¼ŒæŒ‰ä¸‹å›è½¦ç¡®å®š");
+	printf("\n\n\n\t\tæ–°å»ºç”»å¸ƒ\n\n\t\tæ‰“å¼€ç”»å¸ƒæ–‡ä»¶\n\n\t\tæ“ä½œè¯´æ˜\n\n\t\tæ‰“å¼€GitHubä»“åº“\n\n\t\té€€å‡º");
 	MoveCursor(14, 4);
-	SetFontColor(4);
+	SetFontColor(14);
 	printf(">");
 	bool run = true;
 	while (run)
 	{
 		switch (_getch())
 		{
-		case 72: // ÉÏ
-			//Çå¿ÕÉÏ´Î
+		case 72: // ä¸Š
+			//æ¸…ç©ºä¸Šæ¬¡
 			MoveCursor(14, pos * 2);
 			printf(" ");
 			pos--;
@@ -109,8 +109,8 @@ START:
 			MoveCursor(14, pos * 2);
 			printf(">");
 			break;
-		case 80: // ÏÂ
-			//Çå¿ÕÉÏ´Î
+		case 80: // ä¸‹
+			//æ¸…ç©ºä¸Šæ¬¡
 			MoveCursor(14, pos * 2);
 			printf(" ");
 			pos++;
@@ -129,9 +129,9 @@ START:
 	SetFontColor(15);
 	}
 
-	//¸ù¾İÑ¡ÔñÖ´ĞĞ²Ù×÷
+	//æ ¹æ®é€‰æ‹©æ‰§è¡Œæ“ä½œ
 	if (pos == 2)
-	{ //ĞÂ½¨»­²¼
+	{ //æ–°å»ºç”»å¸ƒ
 		InputName();
 		strcat_s(name, suffix);
 		system("cls");
@@ -141,12 +141,12 @@ START:
 		}
 	}
 	else if (pos == 3)
-	{ //´ò¿ª»­²¼ÎÄ¼ş
+	{ //æ‰“å¼€ç”»å¸ƒæ–‡ä»¶
 
 		system("cls");
 		if (normal)
 		{
-			printf("\nÊäÈë»­×÷ÎÄ¼şµÄÏà¶ÔÂ·¾¶»ò¾ø¶ÔÂ·¾¶\n(Â·¾¶ÖĞ²»ÄÜº¬ÓĞ¿Õ¸ñ»ò·Ç·¨×Ö·û»ò½«ÎÄ¼şÍÏ¶¯µ½ÕâÀï):");
+			printf("\nè¾“å…¥ç”»ä½œæ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„æˆ–ç»å¯¹è·¯å¾„\n(è·¯å¾„ä¸­ä¸èƒ½å«æœ‰ç©ºæ ¼æˆ–éæ³•å­—ç¬¦æˆ–å°†æ–‡ä»¶æ‹–åŠ¨åˆ°è¿™é‡Œ):");
 			cin >> path;
 			ReadProject(temparr, path);
 			getname(path, name);
@@ -181,25 +181,25 @@ START:
 		}
 	}
 	else if (pos == 4)
-	{ //²Ù×÷ËµÃ÷
+	{ //æ“ä½œè¯´æ˜
 		system("cls");
-		printf("¿ªÊ¼Ö®Ç°ÓÒ»÷´°¿Ú×óÉÏ½Ç£¬ÊôĞÔ¡ª¡ª²¼¾Ö¡ª¡ªµ÷Õû´óĞ¡Ê±¶ÔÊä³öµÄÎÄ±¾»»ĞĞ¡ª¡ªÈ¡Ïû¹´Ñ¡\n\n");
-		printf("×¢Òâ£ºÔÚ¹â±êµ½´ï´°¿Ú±ß½çÖ®Ç°µ÷Õû´°¿Ú´óĞ¡·ÀÖ¹³öÏÖÎÊÌâ\n\n");
-		printf("°´ÏÂ#¡¢@¡¢*¡¢%¶ÔÓ¦µÄÊı×Ö°´¼üÇĞ»»»­±Ê£¬°´ÏÂ¡°s¡±¼ü±£´æ£¬°´ÏÂ¡°0¡±ÇĞ»»ÎªÏğÆ¤,°´ÏÂ¿Õ¸ñ¼üÌ§Æğ\\·ÅÏÂ»­±Ê\n\n");
-		printf("ÑÕÉ«¶ÔÓ¦µÄ°´¼ü£ºB-À¼ G-ÂÌ C-Çà R-ºì M-Ñóºì D-Éî»Ò Y-»Æ W-°×\n\n");
+		printf("å¼€å§‹ä¹‹å‰å³å‡»çª—å£å·¦ä¸Šè§’ï¼Œå±æ€§â€”â€”å¸ƒå±€â€”â€”è°ƒæ•´å¤§å°æ—¶å¯¹è¾“å‡ºçš„æ–‡æœ¬æ¢è¡Œâ€”â€”å–æ¶ˆå‹¾é€‰\n\n");
+		printf("æ³¨æ„ï¼šåœ¨å…‰æ ‡åˆ°è¾¾çª—å£è¾¹ç•Œä¹‹å‰è°ƒæ•´çª—å£å¤§å°é˜²æ­¢å‡ºç°é—®é¢˜\n\n");
+		printf("æŒ‰ä¸‹#ã€@ã€*ã€%å¯¹åº”çš„æ•°å­—æŒ‰é”®åˆ‡æ¢ç”»ç¬”ï¼ŒæŒ‰ä¸‹â€œsâ€é”®ä¿å­˜ï¼ŒæŒ‰ä¸‹â€œ0â€åˆ‡æ¢ä¸ºæ©¡çš®,æŒ‰ä¸‹ç©ºæ ¼é”®æŠ¬èµ·\\æ”¾ä¸‹ç”»ç¬”\n\n");
+		printf("é¢œè‰²å¯¹åº”çš„æŒ‰é”®ï¼šB-å…° G-ç»¿ C-é’ R-çº¢ M-æ´‹çº¢ D-æ·±ç° Y-é»„ W-ç™½\n\n");
 		system("pause");
 		goto START;
 	}
 	else if (pos == 5)
-	{ //´ò¿ªGitHub²Ö¿â
+	{ //æ‰“å¼€GitHubä»“åº“
 		system("cls");
 		system("start https://github.com/Temperature6/ConsolePixelDrawing");
-		printf("\nGitHub²Ö¿âµØÖ·£ºhttps://github.com/Temperature6/ConsolePixelDrawing \n\n");
+		printf("\nGitHubä»“åº“åœ°å€ï¼šhttps://github.com/Temperature6/ConsolePixelDrawing \n\n");
 		system("pause");
 		goto START;
 	}
 	else if (pos == 6)
-	{ //ÍË³ö
+	{ //é€€å‡º
 		exit(1);
 	}
 }
@@ -208,7 +208,7 @@ void draw(int key)
 {
 	switch (key) {
 	case 72:
-		//ÉÏ
+		//ä¸Š
 		if (y - 1 <= 1)
 			break;
 		MoveCursor(x, y - 1);
@@ -222,7 +222,7 @@ void draw(int key)
 		y--;
 		break;
 	case 80:
-		//ÏÂ
+		//ä¸‹
 		if (y + 1 > YMAX)
 			break;
 		MoveCursor(x, y + 1);
@@ -238,7 +238,7 @@ void draw(int key)
 		y++;
 		break;
 	case 75:
-		//×ó
+		//å·¦
 		if (x - 1 <= 0)
 			break;
 		MoveCursor(x - 1, y);
@@ -252,7 +252,7 @@ void draw(int key)
 		x--;
 		break;
 	case 77:
-		//ÓÒ
+		//å³
 		if (x + 1 > XMAX)
 			break;
 		MoveCursor(x + 1, y);
@@ -277,69 +277,69 @@ void drawattributes(int key)
 {
 	switch (key)
 	{
-		//À¼
+		//å…°
 	case 98:
 	case 66:
 		SetFontColor(1);
 		color = 0;
 		break;
-		//ÂÌ
+		//ç»¿
 	case 103:
 	case 71:
 		SetFontColor(2);
 		color = 1;
 		break;
-		//Çà
+		//é’
 	case 99:
 	case 67:
 		SetFontColor(3);
 		color = 2;
 		break;
-		//ºì
+		//çº¢
 	case 114:
 	case 72:
 		SetFontColor(4);
 		color = 3;
 		break;
-		//Ñóºì
+		//æ´‹çº¢
 	case 109:
 	case 77:
 		SetFontColor(5);
 		color = 4;
 		break;
-		//Éî»Ò
+		//æ·±ç°
 	case 100:
 	case 68:
 		SetFontColor(8);
 		color = 5;
 		break;
-		//»Æ
+		//é»„
 	case 121:
 	case 89:
 		SetFontColor(14);
 		color = 6;
 		break;
-		//°×
+		//ç™½
 	case 119:
 	case 87:
 		SetFontColor(15);
 		color = 7;
 		break;
-		//Ì§Æğ/·ÅÏÂ»­±Ê
+		//æŠ¬èµ·/æ”¾ä¸‹ç”»ç¬”
 	case 32:
 		up++;
 		if (up >= 2)
 			up -= 2;
 		if (up == 1)
 		{
-			system("title »­±ÊÀàĞÍ£ºÌ§Æğ"); //Ì§ÆğÓÃ/
+			system("title ç”»ç¬”ç±»å‹ï¼šæŠ¬èµ·"); //æŠ¬èµ·ç”¨/
 			historypen = pen;
 			pen = '/';
 		}
 		else if (up == 0)
 			pen = historypen;
 		break;
-	//ÇĞ»»»­±Ê
+	//åˆ‡æ¢ç”»ç¬”
 	case 51:
 		pen = '#';
 		break;
@@ -355,38 +355,38 @@ void drawattributes(int key)
 	case 48:
 		pen = ' ';
 		break;
-	//±£´æ»­Í¼¹¤³Ì
+	//ä¿å­˜ç”»å›¾å·¥ç¨‹
 	case 83:
 	case 115:
-		system("title ÕıÔÚ±£´æ»­Í¼¹¤³Ì...");
+		system("title æ­£åœ¨ä¿å­˜ç”»å›¾å·¥ç¨‹...");
 		Save();
-		system("title ±£´æ³É¹¦");
+		system("title ä¿å­˜æˆåŠŸ");
 		Sleep(1000);
 	default:
 		break;
 	}
-	//Ë¢ĞÂ»­±ÊÀàĞÍ
+	//åˆ·æ–°ç”»ç¬”ç±»å‹
 	switch (pen)
 	{
 	
 	case '#':
-		system("title »­±ÊÀàĞÍ£º#");
+		system("title ç”»ç¬”ç±»å‹ï¼š#");
 		break;
 	case '@':
-		system("title »­±ÊÀàĞÍ£º@");
+		system("title ç”»ç¬”ç±»å‹ï¼š@");
 		break;
 	case '*':
-		system("title »­±ÊÀàĞÍ£º*");
+		system("title ç”»ç¬”ç±»å‹ï¼š*");
 		break;
 	case '%':
-		system("title »­±ÊÀàĞÍ£º%");
+		system("title ç”»ç¬”ç±»å‹ï¼š%");
 		break;
 	case ' ':
-		system("title »­±ÊÀàĞÍ£ºÏğÆ¤");
+		system("title ç”»ç¬”ç±»å‹ï¼šæ©¡çš®");
 		break;
 	}
 	MoveCursor(0, 0);
-	cout << "»­±ÊÑÕÉ«£º" << ColorType[color];
+	cout << "ç”»ç¬”é¢œè‰²ï¼š" << ColorType[color];
 	MoveCursor(x, y);
 }
 
@@ -420,6 +420,6 @@ void Save()
 void InputName()
 {
 	system("cls");
-	printf("\nÇëÊäÈë»­×÷µÄÃû³Æ(50¸ö×Ö·ûÒÔÄÚ):");
+	printf("\nè¯·è¾“å…¥ç”»ä½œçš„åç§°(50ä¸ªå­—ç¬¦ä»¥å†…):");
 	cin >> name;
 }
